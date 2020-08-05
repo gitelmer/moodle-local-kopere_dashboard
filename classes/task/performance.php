@@ -31,9 +31,9 @@ class performance extends \core\task\scheduled_task {
         $time = time();
         $this->add_data($time, 'cpu',     performancemonitor::cpu(true));
         $this->add_data($time, 'memory',  performancemonitor::memory(true));
-        $this->add_data($time, 'disk',    performancemonitor::disk_moodledata(true));
+        $this->add_data($time, 'disk',    performancemonitor::disk_moodledata(true)); //I changed the table (field: float to varchar) and it works. disk_moodledata(true) return a string --> "## GB"
         $this->add_data($time, 'average', performancemonitor::load_average(true));
-        $this->add_data($time, 'average', performancemonitor::online());
+        $this->add_data($time, 'users', performancemonitor::online());
     }
 
     private function add_data($time, $type, $value) {
